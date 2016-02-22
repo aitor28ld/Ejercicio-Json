@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+import pprint
 
 with open('monumentos-C_Leon.json') as data:
 	doc = json.load(data)
@@ -21,7 +22,19 @@ if op == 1:
 		
 #Enunciado 2
 if op == 2:
-	for x in doc['monumentos']:
-		if x[u'tipoMonumento'] == u'Yacimientos arqueológicos':
-			print len(x)
-			break
+	for x in doc["monumentos"]:
+		print len(x["tipoMonumento"])
+		
+#Enunciado 3
+if op == 3:
+	nombre = raw_input("Di un nombre de algún monumento: ")
+	for x in doc["monumentos"]:
+		if nombre == x["nombre"]:
+			latitud = x["coordenadas"]["latitud"]
+			longitud = x["coordenadas"]["longitud"]
+			print latitud, longitud
+	pregunta = raw_input("¿Quieres verlo en el mapa? ")
+	if pregunta == "si":
+		print "http://www.openstreetmap.org/way/109089302#map=15/"+latitud+"/"+longitud
+	
+	
