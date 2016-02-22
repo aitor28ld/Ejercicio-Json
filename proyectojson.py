@@ -36,5 +36,11 @@ if op == 3:
 	pregunta = raw_input("¿Quieres verlo en el mapa? ")
 	if pregunta == "si":
 		print "http://www.openstreetmap.org/way/109089302#map=15/"+latitud+"/"+longitud
-	
-	
+
+#Enunciado 4
+if op == 4:
+	informacion = raw_input("Di una cadena: ")
+	for x in doc["monumentos"]:
+		if informacion in x["Descripcion"]:
+			print x["Descripcion"]
+			break
