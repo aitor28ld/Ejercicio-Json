@@ -44,3 +44,13 @@ if op == 4:
 		if informacion in x["Descripcion"]:
 			print x["Descripcion"]
 			break
+
+#Enunciado 5
+if op == 5:
+	minimo = raw_input("Di un precio minimo: ")
+	maximo = raw_input("Di un precio máximo: ")
+	for x in doc["monumentos"]:
+		if x["horariosYTarifas"] in x:
+			print x
+			#		if minimo in x["horariosYTarifas"] and maximo in x["horariosYTarifas"]:
+#			print x["horariosYTarifas"].split("Tarifa")
