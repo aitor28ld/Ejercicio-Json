@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import json
+
+with open("monumentos-C_Leon.json") as data:
+	doc = json.load(data)
 
 print "1.- Listar los nombres de los monumentos"
 print "2.- ¿Cuántos yacimientos arqueológicos hay?"
@@ -9,3 +13,9 @@ print "5.- Pide por teclado un precio minimo y maximo (también puede ser gratui
 
 
 op = int(raw_input("\nElige una opción numérica de las indicadas: "))
+
+#Enunciado 1
+if op == 1:
+	for x in doc["monumentos"]:
+		print x["nombre"]
+	
