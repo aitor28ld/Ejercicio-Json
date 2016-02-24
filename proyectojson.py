@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
-import pprint
+import os
+
 
 with open('monumentos.json') as data:
 	doc = json.load(data)
@@ -72,5 +73,5 @@ if op == 5:
 			if "horariosYTarifas" in x:
 				if "Gratuito" not in x["horariosYTarifas"]["__cdata"] and "Tarifa" in x["horariosYTarifas"]["__cdata"]:
 					print x["nombre"]
-					tarifas = x["horariosYTarifas"]["__cdata"].split("Tarifa</h3>")[1].split(";")[0]
+					tarifas = x["horariosYTarifas"]["__cdata"].split("Tarifa</h3>")[1].split("&euro")[0]
 					print tarifas
