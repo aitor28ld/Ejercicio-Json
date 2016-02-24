@@ -32,7 +32,7 @@ if op == 2:
 if op == 3:
 	nombre = raw_input("Di un nombre de algún monumento: ")
 	for x in doc["monumentos"]:
-		if nombre == x["nombre"]:
+		if nombre == x[u"nombre"]:
 			latitud = x["coordenadas"]["latitud"]
 			longitud = x["coordenadas"]["longitud"]
 			print latitud, longitud
@@ -44,16 +44,33 @@ if op == 3:
 if op == 4:
 	informacion = raw_input("Di una cadena: ")
 	for x in doc["monumentos"]:
-		if informacion in x["Descripcion"]:
-			print x["Descripcion"]
+		if informacion in x[u'Descripcion']["__cdata"]:
+			print x[u"Descripcion"][u"__cdata"]
 			break
 
 #Enunciado 5
 if op == 5:
-	minimo = raw_input("Di un precio minimo: ")
-	maximo = raw_input("Di un precio máximo: ")
-	for x in doc["monumentos"]:
-		if x["horariosYTarifas"] in x:
-			print x
-			#		if minimo in x["horariosYTarifas"] and maximo in x["horariosYTarifas"]:
-#			print x["horariosYTarifas"].split("Tarifa")
+	gratis = raw_input("Es gratuito? ")
+	if gratis.lower() == "si":
+		for x in doc["monumentos"]:
+			if "horariosYTarifas" in x:
+				if "Gratuito" in x["horariosYTarifas"]["__cdata"]:
+					print x["nombre"]
+		pregunta = raw_input("Quieres obtener información de algún monumento? ")
+		if pregunta.lower() == "si":
+			pregunta2 = raw_input("¿De qué monumento quieres obtener información? ")
+			#Traduzco a unicode para evitar problemas
+			pregunta2 = unicode(pregunta2,encoding='utf-8')
+			for x in doc["monumentos"]:
+				if pregunta2 in x['nombre']:
+					print x["horariosYTarifas"]["__cdata"]
+					break
+	if gratis.lower() == "no":
+		minimo = raw_input("Di un precio minimo: ")
+		maximo = raw_input("Di un precio máximo: ")
+		for x in doc["monumentos"]:
+			if "horariosYTarifas" in x:
+				if "Gratuito" not in x["horariosYTarifas"]["__cdata"] and "Tarifa" in x["horariosYTarifas"]["__cdata"]:
+					print x["nombre"]
+					tarifas = x["horariosYTarifas"]["__cdata"].split("Tarifa</h3>")[1].split(";")[0]
+					print tarifas
