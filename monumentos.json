@@ -1,6 +1,5 @@
 {
-    "monumentos": {
-        "monumento": [
+    "monumentos":  [
             {
                 "identificador": "24839",
                 "nombre": "Despoblado Castro de Las Merchanas",
@@ -33491,4 +33490,4 @@
             }
         ]
     }
-}
+

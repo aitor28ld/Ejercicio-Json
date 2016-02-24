@@ -3,7 +3,7 @@
 import json
 import pprint
 
-with open('monumentos-C_Leon.json') as data:
+with open('monumentos.json') as data:
 	doc = json.load(data)
 
 print '1.- Listar los nombres de los monumentos'
@@ -18,12 +18,15 @@ op = int(raw_input('\nElige una opción numérica de las indicadas: '))
 #Enunciado 1
 if op == 1:
 	for x in doc['monumentos']:
-		print x[u'nombre']
+		print x["nombre"]
 		
 #Enunciado 2
 if op == 2:
+	suma = 0
 	for x in doc["monumentos"]:
-		print len(x["tipoMonumento"])
+		if u"Yacimientos arqueológicos" in x["tipoMonumento"]:
+			suma = suma + 1
+	print suma
 		
 #Enunciado 3
 if op == 3:
