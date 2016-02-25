@@ -1,6 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# coding: utf-8 
 import json
+import sys  
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 with open('monumentosjson.json') as data:
 	doc = json.load(data)
@@ -9,7 +12,7 @@ print '1.- Listar los nombres de los monumentos'
 print '2.- ¿Cuántos yacimientos arqueológicos hay?'
 print '3.- Pide por teclado un nombre de monumento y muestra las coordenadas de ubicación'
 print '4.- Pide por teclado una cadena y muestra las coincidencias encontradas en la descripción del monumento'
-print '5.- Pide por teclado un precio minimo y maximo (también puede ser gratuito) y muestra aquellos monumentos con un precio entre dicho rango además de que el programa preguntará si quiere información acerca de un monumento en concreto.'
+print '5.- Pregunta por teclado si el monumento a buscar es gratuito o no. Si la respuesta es sí, muestra el nombre de los monumentos gratuitos además de preguntar si desea obtener información de ellos. Si la respuesta es no, pedirá un precio máximo y mínimo mostrando los monumentos con la entrada en dicho rango y también preguntará si desea conocer información de alguno.'
 
 op = int(raw_input('\nElige una opción numérica de las indicadas: '))
 
@@ -58,9 +61,9 @@ if op == 5:
 		if pregunta.lower() == "si":
 			pregunta2 = raw_input("¿De qué monumento quieres obtener información? ")
 			#Traduzco a unicode para evitar problemas
-			pregunta2 = unicode(pregunta2,encoding='utf-8')
+			#pregunta2 = pregunta2.encode('ISO-8859-1')
 			for x in doc["monumentos"]:
-				if pregunta2 in x['nombre']:
+				if pregunta2 == x[u"nombre"]:
 					print x["horariosYTarifas"]["__cdata"]
 					break
 		else:
@@ -80,5 +83,16 @@ if op == 5:
 						tarifa3 = float(tarifa)
 						if minimo < tarifa3 and maximo > tarifa3:
 							print "la entrada al monumento",x["nombre"],"cuesta", tarifa3,"euros"
-						
+					
+		pregunta = raw_input("¿Quieres obtener información de algún monumento? ")
+		if pregunta.lower() == "si":
+			pregunta2 = raw_input("¿De qué monumento quieres obtener información? ")
+			#Traduzco a unicode para evitar problemas
+			pregunta2 = unicode(pregunta2,encoding='utf-8')
+			for x in doc["monumentos"]:
+				if pregunta2 in x['nombre']:
+					print x["horariosYTarifas"]["__cdata"]
+					break
+		else:
+			print "Gracias por usar nuestro servicio"			
 				
