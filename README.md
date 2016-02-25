@@ -11,4 +11,4 @@ Enunciados
 
 4.- Pide por teclado una cadena y muestra las coincidencias encontradas en la descripción del monumento (descripción completa)
 
-5.- Pide por teclado un precio minimo y maximo (también puede ser gratuito) y muestra aquellos monumentos con un precio entre dicho rango además de que el programa preguntará si quiere información acerca de un monumento en concreto. (se mostrará la descripción del monumento así cómo las observaciones referentes a HorariosYTarifas)
+5.- Pregunta por teclado si el monumento a buscar es gratuito o no. Si la respuesta es sí, muestra el nombre de los monumentos gratuitos además de preguntar si desea obtener información de ellos. Si la respuesta es no, pedirá un precio máximo y mínimo mostrando los monumentos con la entrada en dicho rango y también preguntará si desea conocer información de alguno.
