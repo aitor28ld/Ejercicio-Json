@@ -4,7 +4,7 @@ import json
 import os
 
 
-with open('monumentos.json') as data:
+with open('monumentosjson.json') as data:
 	doc = json.load(data)
 
 print '1.- Listar los nombres de los monumentos'
@@ -72,6 +72,11 @@ if op == 5:
 		for x in doc["monumentos"]:
 			if "horariosYTarifas" in x:
 				if "Gratuito" not in x["horariosYTarifas"]["__cdata"] and "Tarifa" in x["horariosYTarifas"]["__cdata"]:
-					print x["nombre"]
-					tarifas = x["horariosYTarifas"]["__cdata"].split("Tarifa</h3>")[1].split("&euro")[0]
-					print tarifas
+					#print x["nombre"]
+					tarifa = x["horariosYTarifas"]["__cdata"].split("Tarifa</h3>")[1].split("&euro")[0]
+					if "<ul><li>General:" in tarifa:
+						tarifa2 = tarifa.split(":")[1]
+						tarifa3 = tarifa+tarifa2	
+					elif minimo < float(tarifa3) and maximo > float(tarifa3):
+						print x["nombre"]
+						print tarifa
