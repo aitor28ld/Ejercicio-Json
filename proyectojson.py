@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8 
 import json
-import sys  
-reload(sys)  
-sys.setdefaultencoding('utf8')
+#import sys  
+#reload(sys)  
+#sys.setdefaultencoding('utf8')
 
 with open('monumentosjson.json') as data:
 	doc = json.load(data)
@@ -40,6 +40,8 @@ if op == 3:
 	pregunta = raw_input("¿Quieres verlo en el mapa? ")
 	if pregunta == "si":
 		print "http://www.openstreetmap.org/way/109089302#map=15/"+latitud+"/"+longitud
+	else:
+		print "Gracias por utilizar nuestro servicio"
 
 #Enunciado 4
 if op == 4:
@@ -48,7 +50,7 @@ if op == 4:
 		if informacion in x[u'Descripcion']["__cdata"]:
 			print x[u"Descripcion"][u"__cdata"]
 			break
-
+			
 #Enunciado 5
 if op == 5:
 	gratis = raw_input("¿Es gratuito? ")
@@ -60,10 +62,10 @@ if op == 5:
 		pregunta = raw_input("¿Quieres obtener información de algún monumento? ")
 		if pregunta.lower() == "si":
 			pregunta2 = raw_input("¿De qué monumento quieres obtener información? ")
+			print type(pregunta2)
 			#Traduzco a unicode para evitar problemas
-			#pregunta2 = pregunta2.encode('ISO-8859-1')
 			for x in doc["monumentos"]:
-				if pregunta2 == x[u"nombre"]:
+				if pregunta2 == x["nombre"].encode("utf-8") or pregunta2 in x["nombre"].encode("utf-8"):
 					print x["horariosYTarifas"]["__cdata"]
 					break
 		else:
@@ -95,4 +97,5 @@ if op == 5:
 					break
 		else:
 			print "Gracias por usar nuestro servicio"			
-				
+else:
+	print "Opción inválida"			
