@@ -53,16 +53,15 @@ if op == 4:
 			
 #Enunciado 5
 if op == 5:
-	gratis = raw_input("¿Es gratuito? ")
+	gratis = raw_input("¿El monumento a consultar es gratuito? ")
 	if gratis.lower() == "si":
 		for x in doc["monumentos"]:
 			if "horariosYTarifas" in x:
 				if "Gratuito" in x["horariosYTarifas"]["__cdata"]:
 					print x["nombre"]
-		pregunta = raw_input("¿Quieres obtener información de algún monumento? ")
+		pregunta = raw_input("\n¿Quieres obtener información de algún monumento? ")
 		if pregunta.lower() == "si":
-			pregunta2 = raw_input("¿De qué monumento quieres obtener información? ")
-			print type(pregunta2)
+			pregunta2 = raw_input("\n¿De qué monumento quieres obtener información? ")
 			#Traduzco a unicode para evitar problemas
 			for x in doc["monumentos"]:
 				if pregunta2 == x["nombre"].encode("utf-8") or pregunta2 in x["nombre"].encode("utf-8"):
@@ -86,16 +85,15 @@ if op == 5:
 						if minimo < tarifa3 and maximo > tarifa3:
 							print "la entrada al monumento",x["nombre"],"cuesta", tarifa3,"euros"
 					
-		pregunta = raw_input("¿Quieres obtener información de algún monumento? ")
+		pregunta = raw_input("\n¿Quieres obtener información de algún monumento? ")
 		if pregunta.lower() == "si":
-			pregunta2 = raw_input("¿De qué monumento quieres obtener información? ")
+			pregunta2 = raw_input("\n¿De qué monumento quieres obtener información? ")
 			#Traduzco a unicode para evitar problemas
-			pregunta2 = unicode(pregunta2,encoding='utf-8')
 			for x in doc["monumentos"]:
-				if pregunta2 in x['nombre']:
+				if pregunta2 == x["nombre"].encode("utf-8") or pregunta2 in x["nombre"].encode("utf-8"):
 					print x["horariosYTarifas"]["__cdata"]
 					break
 		else:
-			print "Gracias por usar nuestro servicio"			
+			print "\nGracias por usar nuestro servicio"			
 else:
 	print "Opción inválida"			
