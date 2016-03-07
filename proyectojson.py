@@ -103,6 +103,5 @@ if op == 6:
 			os.system("echo '<h1>"+x[u"nombre"].encode("utf-8")+"</h1>' >> monumentos.html")
 			os.system("echo '<p>"+x["Descripcion"]["__cdata"].encode("utf-8")+"</p>' >> monumentos.html")
 			os.system("echo '<a href ='http://www.openstreetmap.org/way/109089302#map=15/"+x["coordenadas"]["latitud"]+"/"+x["coordenadas"]["longitud"]+"'>Mapa</a>' >> monumentos.html")
-
 else:
 	print "Opción inválida"			
