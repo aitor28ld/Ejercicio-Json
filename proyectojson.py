@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8 
 import json
-#import sys  
-#reload(sys)  
-#sys.setdefaultencoding('utf8')
+
+import os
 
 with open('monumentosjson.json') as data:
 	doc = json.load(data)
@@ -13,6 +12,7 @@ print '2.- ¿Cuántos yacimientos arqueológicos hay?'
 print '3.- Pide por teclado un nombre de monumento y muestra las coordenadas de ubicación'
 print '4.- Pide por teclado una cadena y muestra las coincidencias encontradas en la descripción del monumento'
 print '5.- Pregunta por teclado si el monumento a buscar es gratuito o no. Si la respuesta es sí, muestra el nombre de los monumentos gratuitos además de preguntar si desea obtener información de ellos. Si la respuesta es no, pedirá un precio máximo y mínimo mostrando los monumentos con la entrada en dicho rango y también preguntará si desea conocer información de alguno.'
+print '6.- Genera un fichero HTML con el nombre, descripción y url del mapa de todos los monumentos'
 
 op = int(raw_input('\nElige una opción numérica de las indicadas: '))
 
@@ -94,6 +94,15 @@ if op == 5:
 					print x["horariosYTarifas"]["__cdata"]
 					break
 		else:
-			print "\nGracias por usar nuestro servicio"			
+			print "\nGracias por usar nuestro servicio"	
+if op == 6:		
+	for x in doc[u"monumentos"]:
+		if "Descripcion" not in x:
+			print "No existe Descripcion"
+		else:
+			os.system("echo '<h1>"+x[u"nombre"].encode("utf-8")+"</h1>' >> monumentos.html")
+			os.system("echo '<p>"+x["Descripcion"]["__cdata"].encode("utf-8")+"</p>' >> monumentos.html")
+			os.system("echo '<a href ='http://www.openstreetmap.org/way/109089302#map=15/"+x["coordenadas"]["latitud"]+"/"+x["coordenadas"]["longitud"]+"'>Mapa</a>' >> monumentos.html")
+
 else:
 	print "Opción inválida"			
