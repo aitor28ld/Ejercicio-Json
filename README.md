@@ -12,3 +12,5 @@ Enunciados
 4.- Pide por teclado una cadena y muestra las coincidencias encontradas en la descripción del monumento (descripción completa)
 
 5.- Pregunta por teclado si el monumento a buscar es gratuito o no. Si la respuesta es sí, muestra el nombre de los monumentos gratuitos además de preguntar si desea obtener información de ellos. Si la respuesta es no, pedirá un precio máximo y mínimo mostrando los monumentos con la entrada en dicho rango y también preguntará si desea conocer información de alguno.
+
+6.- Genera un fichero HTML con el nombre, descripción y url del mapa de todos los monumentos
